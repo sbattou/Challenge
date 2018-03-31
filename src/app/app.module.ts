@@ -9,13 +9,15 @@ import { DisplayPage } from '../pages/display/display';
 import {RegisterPage} from "../pages/register/register";
 import { RestProvider } from '../providers/rest/rest';
 import { HttpClientModule } from '@angular/common/http';
+import {HomePage} from "../pages/home/home";
 
 
 @NgModule({
   declarations: [
     MyApp,
     DisplayPage,
-    RegisterPage
+    RegisterPage,
+    HomePage
   ],
   imports: [
     BrowserModule,
@@ -26,7 +28,8 @@ import { HttpClientModule } from '@angular/common/http';
   entryComponents: [
     MyApp,
     DisplayPage,
-    RegisterPage
+    RegisterPage,
+    HomePage
   ],
   providers: [
     StatusBar,

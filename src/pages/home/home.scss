@@ -1,0 +1,20 @@
+page-home {
+}
+
+.background {
+  height: 100%;
+  width: 100%;
+  background-repeat:no-repeat;
+  background-size:cover;
+  background-image: url('../../assets/imgs/background.gif');
+}
+
+.navigation {
+  float: right;
+}
+
+.form-login {
+  height: 60px;
+  width: 350px;
+  float: right;
+}
