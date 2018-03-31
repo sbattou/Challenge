@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import {NavController, ToastController} from 'ionic-angular';
 import {FormControl, FormGroup, Validators} from "@angular/forms";
+import {DisplayPage} from "../display/display";
 
 @Component({
   selector: 'page-register',
@@ -53,7 +54,8 @@ export class RegisterPage {
   submitForm(){
     let message: string;
     if (this.myform.valid){
-      message = "The form was submitted successfully!";
+      message = "Your account has been created successfully!";
+      this.navCtrl.push(DisplayPage);
     }
     else {
       message = "The form was not submitted successfully please review your registration information!";

@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import {NavController, ToastController} from 'ionic-angular';
 import {FormControl, FormGroup, Validators} from "@angular/forms";
+import {DisplayPage} from "../display/display";
+import {RegisterPage} from "../register/register";
 
 @Component({
   selector: 'page-home',
@@ -29,9 +31,22 @@ export class HomePage {
   }
 
   login() {
+    if (this.myform.valid && this.email.value == "admin@gmail.com" && this.password.value == "admin"){
+      this.navCtrl.push(DisplayPage);
+    }
+    else {
+      let message = "The Email or Password you entered is not valid";
+      let toast = this.toastCtrl.create({
+        message: message,
+        duration: 3000,
+        position: "top"
+      });
+      toast.present();
+    }
   }
 
   register() {
+    this.navCtrl.push(RegisterPage);
   }
 
 }
