@@ -1,0 +1,75 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>
+      Register
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding >
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+      </ion-col>
+      <ion-col>
+        <form novalidate [formGroup]="myform">
+          <ion-list>
+            <div class="form-group">
+              <ion-item>
+                <ion-label floating>Name</ion-label>
+                <ion-input type="text" class="form-control" formControlName="name" required></ion-input>
+              </ion-item>
+              <div class="form-control-feedback" *ngIf="name.errors && (name.dirty || name.touched)">
+                <p *ngIf="name.errors.required">First Name is required</p>
+                <p *ngIf="name.errors.pattern">Invalid name</p>
+              </div>
+            </div>
+            <div class="form-group">
+              <ion-item>
+                <ion-label floating>Password</ion-label>
+                <ion-input type="password" class="form-control" formControlName="password" required></ion-input>
+              </ion-item>
+              <div class="form-control-feedback" *ngIf="password.errors && (password.dirty || password.touched)">
+                <p *ngIf="password.errors.required">Password is required</p>
+                <p *ngIf="password.errors.minlength">Password is too short</p>
+              </div>
+            </div>
+            <div class="form-group">
+              <ion-item>
+                <ion-label floating>Email</ion-label>
+                <ion-input type="email" class="form-control" formControlName="email" required></ion-input>
+              </ion-item>
+              <div class="form-control-feedback" *ngIf="email.errors && (email.dirty || email.touched)">
+                <p *ngIf="email.errors.required">Email is required</p>
+                <p *ngIf="email.errors.pattern">Invalid Email address</p>
+              </div>
+            </div>
+            <div class="form-group">
+              <ion-item>
+                <ion-label floating>Phone</ion-label>
+                <ion-input type="tel" class="form-control" formControlName="phone" required></ion-input>
+              </ion-item>
+              <div class="form-control-feedback" *ngIf="phone.errors && (phone.dirty || phone.touched)">
+                <p *ngIf="phone.errors.required">Phone is required</p>
+                <p *ngIf="phone.errors.pattern">Invalid phone number</p>
+              </div>
+            </div>
+            <div class="form-group">
+              <ion-item>
+                <ion-label floating>Website</ion-label>
+                <ion-input type="url" class="form-control" formControlName="website" required></ion-input>
+              </ion-item>
+              <div class="form-control-feedback" *ngIf="website.errors && (website.dirty || website.touched)">
+                <p *ngIf="website.errors.required">Website is required</p>
+              </div>
+            </div>
+          </ion-list>
+          <br>
+          <button ion-button full (click)="submitForm()">Submit</button>
+        </form>
+      </ion-col>
+      <ion-col>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>
