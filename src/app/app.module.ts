@@ -5,7 +5,8 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
 
 import { MyApp } from './app.component';
-import { HomePage } from '../pages/home/home';
+import { DisplayPage } from '../pages/display/display';
+import {RegisterPage} from "../pages/register/register";
 import { RestProvider } from '../providers/rest/rest';
 import { HttpClientModule } from '@angular/common/http';
 
@@ -13,7 +14,8 @@ import { HttpClientModule } from '@angular/common/http';
 @NgModule({
   declarations: [
     MyApp,
-    HomePage
+    DisplayPage,
+    RegisterPage
   ],
   imports: [
     BrowserModule,
@@ -23,7 +25,8 @@ import { HttpClientModule } from '@angular/common/http';
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
-    HomePage
+    DisplayPage,
+    RegisterPage
   ],
   providers: [
     StatusBar,

@@ -3,10 +3,10 @@ import { NavController } from 'ionic-angular';
 import { RestProvider } from '../../providers/rest/rest';
 
 @Component({
-  selector: 'page-home',
-  templateUrl: 'home.html'
+  selector: 'page-display',
+  templateUrl: 'display.html'
 })
-export class HomePage {
+export class DisplayPage {
 
   users: any;
 
