@@ -57,7 +57,7 @@ export class HomePage {
   }
 
   register() {
-    this.navCtrl.setRoot(RegisterPage);
+    this.navCtrl.push(RegisterPage);
   }
 
 }

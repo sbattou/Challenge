@@ -1,18 +1,22 @@
 <ion-header>
-  <ion-navbar>
+  <ion-navbar color="primary">
     <ion-title>
-      User List
+      Users
     </ion-title>
   </ion-navbar>
 </ion-header>
 
 <ion-content>
-  <ion-list inset>
+  <ion-list>
     <ion-item *ngFor="let user of users">
+      <ion-avatar item-start>
+        <img src="../../assets/imgs/logo.png">
+      </ion-avatar>
       <h2>{{user.name}}</h2>
-      <p>{{user.email}}</p>
-      <p>{{user.phone}}</p>
-      <p>{{user.website}}</p>
+      <p>Email: {{user.email}}</p>
+      <p>Phone: {{user.phone}}</p>
+      <p>Website: {{user.website}}</p>
     </ion-item>
   </ion-list>
 </ion-content>
+
