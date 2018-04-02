@@ -11,6 +11,18 @@ import { RestProvider } from '../providers/rest/rest';
 import { HttpClientModule } from '@angular/common/http';
 import {HomePage} from "../pages/home/home";
 
+import { AngularFireModule } from 'angularfire2';
+import { AngularFireDatabaseModule, AngularFireDatabase } from 'angularfire2/database';
+import { AngularFireAuthModule } from 'angularfire2/auth';
+
+export const firebaseConfig = {
+  apiKey: "AIzaSyBy-3Buf51nPS9QZHRAu0TsIbhqm3-3Eac",
+  authDomain: "challenge-14008.firebaseapp.com",
+  databaseURL: "https://challenge-14008.firebaseio.com",
+  projectId: "challenge-14008",
+  storageBucket: "challenge-14008.appspot.com",
+  messagingSenderId: "418077387186"
+};
 
 @NgModule({
   declarations: [
@@ -22,7 +34,10 @@ import {HomePage} from "../pages/home/home";
   imports: [
     BrowserModule,
     HttpClientModule,
-    IonicModule.forRoot(MyApp)
+    IonicModule.forRoot(MyApp),
+    AngularFireModule.initializeApp(firebaseConfig),
+    AngularFireDatabaseModule,
+    AngularFireAuthModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -35,7 +50,8 @@ import {HomePage} from "../pages/home/home";
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    RestProvider
+    RestProvider,
+    AngularFireDatabase
   ]
 })
 export class AppModule {}

@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
 import {NavController, ToastController} from 'ionic-angular';
 import {FormControl, FormGroup, Validators} from "@angular/forms";
-import {DisplayPage} from "../display/display";
+import {AngularFireAuth} from "angularfire2/auth";
+import {HomePage} from "../home/home";
 
 @Component({
   selector: 'page-register',
@@ -16,7 +17,7 @@ export class RegisterPage {
   password: FormControl;
   website: FormControl;
 
-  constructor(public navCtrl: NavController, public toastCtrl: ToastController ) {
+  constructor(public navCtrl: NavController, public toastCtrl: ToastController, public afAuth: AngularFireAuth) {
     this.createFormControls();
     this.createForm();
   }
@@ -54,18 +55,42 @@ export class RegisterPage {
   submitForm(){
     let message: string;
     if (this.myform.valid){
-      message = "Your account has been created successfully!";
-      this.navCtrl.push(DisplayPage);
+      try {
+        this.afAuth.auth.createUserWithEmailAndPassword(this.email.value,this.password.value).then(
+          ()=> {
+            message = "Your account has been created successfully!";
+            let toast = this.toastCtrl.create({
+              message: message,
+              duration: 3000,
+              position: "top"
+            });
+            toast.present();
+            this.navCtrl.setRoot(HomePage);
+          },
+          (error)=> {
+            let errorCode = error.code;
+            let errorMessage = error.message;
+            let toast = this.toastCtrl.create({
+              message: errorMessage,
+              duration: 3000,
+              position: "top"
+            });
+            toast.present();
+          }
+        )
+      }
+      catch (e) {
+        console.log(e);
+      }
     }
     else {
-      message = "The form was not submitted successfully please review your registration information!";
+      message = "The information you provided is invalid please review before submitting";
+      let toast = this.toastCtrl.create({
+        message: message,
+        duration: 3000,
+        position: "top"
+      });
+      toast.present();
     }
-    let toast = this.toastCtrl.create({
-      message: message,
-      duration: 3000,
-      position: "top"
-    });
-    toast.present();
   }
-
 }

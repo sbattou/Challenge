@@ -4,6 +4,9 @@ import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {DisplayPage} from "../display/display";
 import {RegisterPage} from "../register/register";
 
+import {AngularFireAuth} from "angularfire2/auth";
+
+
 @Component({
   selector: 'page-home',
   templateUrl: 'home.html',
@@ -14,7 +17,7 @@ export class HomePage {
   email: FormControl;
   password: FormControl;
 
-  constructor(public navCtrl: NavController, public toastCtrl: ToastController,) {
+  constructor(public navCtrl: NavController, public toastCtrl: ToastController, public afAuth: AngularFireAuth) {
     this.createFormControls();
     this.createForm();
   }
@@ -31,22 +34,30 @@ export class HomePage {
   }
 
   login() {
-    if (this.myform.valid && this.email.value == "admin@gmail.com" && this.password.value == "admin"){
-      this.navCtrl.push(DisplayPage);
+    try {
+      this.afAuth.auth.signInWithEmailAndPassword(this.email.value, this.password.value).then(
+        ()=> {
+          this.navCtrl.push(DisplayPage)
+        },
+        (error)=> {
+          let errorCode = error.code;
+          let errorMessage = error.message;
+          let toast = this.toastCtrl.create({
+            message: errorMessage,
+            duration: 3000,
+            position: "top"
+          });
+          toast.present();
+        }
+      )
     }
-    else {
-      let message = "The Email or Password you entered is not valid";
-      let toast = this.toastCtrl.create({
-        message: message,
-        duration: 3000,
-        position: "top"
-      });
-      toast.present();
+    catch (e) {
+     console.log(e);
     }
   }
 
   register() {
-    this.navCtrl.push(RegisterPage);
+    this.navCtrl.setRoot(RegisterPage);
   }
 
 }
